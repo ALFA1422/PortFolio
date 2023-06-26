@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dani Martínez Site</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-gray-900 text-white py-4 px-6 fixed top-0 w-full">
+        <nav class="flex justify-end">
+            <!-- Botonera en su estado normal -->
+            <div class="hidden sm:flex">
+                <a href="#seccion_inicio" class="text-white hover:bg-gray-800 px-4 py-2 rounded transition-colors duration-300 ease-in-out">Inicio</a>
+                <a href="#sobre_mi" class="text-white hover:bg-gray-800 px-4 py-2 rounded transition-colors duration-300 ease-in-out">Sobre mí</a>
+                <a href="#educacion" class="text-white hover:bg-gray-800 px-4 py-2 rounded transition-colors duration-300 ease-in-out">Educación</a>
+                <a href="#contacto" class="text-white hover:bg-gray-800 px-4 py-2 rounded transition-colors duration-300 ease-in-out">Contacto</a>
+            </div>
+            <!-- Botonera al reducir ventana -->
+            <div class="block sm:hidden">
+                <label for="menu-toggle" class="sr-only">Toggle Navigation</label>
+                <select id="menu-toggle" class="text-white hover:bg-gray-800 px-4 py-2 rounded">
+                    <option value="seccion_inicio">Inicio</option>
+                    <option value="sobre_mi">Sobre mí</option>
+                    <option value="educacion">Educación</option>
+                    <option value="contacto">Contacto</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <section id="seccion_inicio" class="h-screen flex flex-col justify-center items-center bg-gray-100">
+        <div class="text-center">
+            <h2 id="titulo" class="text-4xl text-gray-800 text-8xl transition-all duration-500 transform hover:scale-105 font-semibold">Dani Martínez</h2>
+            <h3 id="subtitulo" class="text-2xl text-gray-600 text-6xl transition-all duration-500 transform hover:scale-105 text-red-900 pt-5">Web Developer</h3>
+        </div>
+    </section>
+
+    <section id="sobre_mi" class="h-screen flex flex-col justify-center items-center bg-gray-200">
+        <h2 class="text-3xl text-gray-800">Sobre mí</h2>
+        <p class="text-gray-600 text-center text-2xl">
+            Estudiante de aplicaciones web con conocimientos básicos en front-end y back-end, buscando una oportunidad laboral para desarrollar mis habilidades en programación. Apasionado del aprendizaje continuo, responsable, organizado y orientado a objetivos. Comprometido con el éxito de la empresa y con contribuir al sector IT.
+        </p>
+    </section>
+
+    <section id="educacion" class="h-screen flex flex-col justify-center items-center bg-gray-300">
+        <h2 class="text-3xl text-gray-800">Educación</h2>
+        <p class="text-gray-600">Contenido de la Educación.</p>
+    </section>
+
+    <section id="contacto" class="h-screen flex flex-col justify-center items-center bg-gray-300">
+        <h2 class="text-3xl text-gray-800">Contacto</h2>
+        <p class="text-gray-600">Contenido de Contacto.</p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
