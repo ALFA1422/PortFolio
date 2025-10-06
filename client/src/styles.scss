@@ -1,0 +1,39 @@
+/* Cursor global: mano */
+html, body {
+  /* Ajusta el “punto activo” (10 6) según te convenga */
+  cursor: url('assets/img/cursores/mano.png') 10 6, auto;
+}
+
+/* Asegurar cursores correctos en campos de texto */
+input, textarea {
+  cursor: text !important;
+}
+
+/* Por accesibilidad, cuando algo ya usa pointer, mantenemos nuestra mano personalizada */
+a, button, [role="button"], .btn, .clickable {
+  cursor: url('assets/img/cursores/mano.png') 10 6, pointer;
+}
+
+/* 👇 animación al hacer clic */
+@keyframes click-hand {
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+  30% {
+    transform: rotate(-8deg) translateY(3px);
+  }
+  60% {
+    transform: rotate(3deg) translateY(-1px);
+  }
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+}
+
+/* Estado activo (cuando se hace clic) */
+body.clicked {
+  cursor: url("/assets/img/cursores/mano.png") 10 6, auto;
+  animation: click-hand 0.25s ease-out;
+  transform-origin: top center;
+  will-change: transform;
+}
