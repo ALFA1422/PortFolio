@@ -1,11 +1,35 @@
-<div
-  id="menu-dianas"
-  class="fixed right-6 z-50 pointer-events-auto select-none"
->
-  <img
-    appReticulaCursor
-    src="assets/img/menu-dianas/diana-sebusca/entera/se-busca-entera.png"
-    alt="Diana Se Busca"
-    class="diana-img animate-brisa"
-  />
+<div id="menu-dianas">
+
+  <!-- SE BUSCA -->
+  <app-diana-base
+    class="diana sebusca"
+    [imagenEntera]="'./assets/img/menu-dianas/diana-sebusca/entera/se-busca-entera.png'"
+    [imagenRotaIzq]="'./assets/img/menu-dianas/diana-sebusca/rota/se-busca-rota-izquierda.png'"
+    [imagenRotaDer]="'./assets/img/menu-dianas/diana-sebusca/rota/se-busca-rota-derecha.png'"
+    [ruta]="'/se-busca'"
+    [rutaActual]="rutaActual$ | async"
+    [offsetIzq]="0"
+    [offsetDer]="0"
+    [offsetYIzq]="0"
+    [offsetYDer]="0"
+    [rotacionIzq]="1"
+    [rotacionDer]="-3"
+  ></app-diana-base>
+
+  <!-- TOMBSTONE -->
+  <app-diana-base
+    class="diana tombstone"
+    [imagenEntera]="'./assets/img/menu-dianas/diana-tombstone/entera/tombstone-entera.png'"
+    [imagenRotaIzq]="'./assets/img/menu-dianas/diana-tombstone/rota/tombstone-rota-izquierda.png'"
+    [imagenRotaDer]="'./assets/img/menu-dianas/diana-tombstone/rota/tombstone-rota-derecha.png'"
+    [ruta]="'/tombstone'"
+    [rutaActual]="rutaActual$ | async"
+    [offsetIzq]="-30"
+    [offsetDer]="30"
+    [rotacionIzq]="0"
+    [rotacionDer]="2"
+    [offsetYIzq]="-3"
+    [offsetYDer]="4"
+  ></app-diana-base>
+
 </div>

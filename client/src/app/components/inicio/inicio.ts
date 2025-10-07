@@ -1,10 +1,10 @@
 import { Component, HostListener } from '@angular/core';
-import { MenuDianasComponent } from '../menu-dianas/menu-dianas';
+
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [MenuDianasComponent], // 👈 lo añades aquí
+  imports: [],
   templateUrl: './inicio.html',
   styleUrls: ['./inicio.scss']
 })

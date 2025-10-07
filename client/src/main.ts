@@ -5,8 +5,7 @@ import { AppComponent } from './app/app';
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
 
-  
-// Detectar clics globalmente y aplicar animación de mano
+// 🔄 Detectar clics globalmente y cambiar el cursor temporalmente
 window.addEventListener('mousedown', () => {
   document.body.classList.add('clicked');
 });
@@ -14,7 +13,5 @@ window.addEventListener('mousedown', () => {
 window.addEventListener('mouseup', () => {
   setTimeout(() => {
     document.body.classList.remove('clicked');
-  }, 150);
+  }, 50); // ligera pausa para que se perciba el giro
 });
-
-

@@ -1,34 +1,28 @@
-/* 🌬️ balanceo sutil tipo brisa del desierto */
-@keyframes brisa {
-  0%, 100% {
-    transform: rotate(0deg) translateY(-2px);
-  }
-  40% {
-    transform: rotate(0.5deg) translateY(1px);
-  }
-  70% {
-    transform: rotate(3deg) translateY(-4px);
-  }
-}
+/* ==========================================
+   🎯 MENÚ DE DIANAS — HUD FIJO GLOBAL
+   ========================================== */
 
-.animate-brisa {
-  animation: brisa 3s ease-in-out infinite;
-  transform-origin: top center;
-  will-change: transform;
-}
-
-.diana-img {
-  position: fixed;
-  top: 0;
-  right: 38rem;
-  width: 100px;
+#menu-dianas {
+  position: fixed;         /* anclado al viewport, no a las vistas */
+  top: 0;                  /* siempre arriba */
+  right: 200px;                /* referencia para las distancias */
+  width: auto;
   height: auto;
-  z-index: 50;
-  transition: transform 0.4s ease;
-  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.6));
+  z-index: 9999;           /* por encima de todo */
+  pointer-events: none;    /* evita bloquear clics debajo */
 }
 
-.diana-img:hover {
-  transform: scale(1.15);
-  filter: drop-shadow(3px 6px 8px rgba(0, 0, 0, 0.7));
+/* Cada diana se coloca de forma independiente */
+#menu-dianas app-diana-base {
+  position: absolute;      /* anclada al propio viewport */
+  top: 0px;               /* distancia fija desde arriba */
+  pointer-events: auto;    /* clicable */
+}
+/* 📍 Posiciones exactas desde el borde derecho */
+#menu-dianas .tombstone {
+  right: 260px;             /* separación fija de 40px del borde derecho */
+}
+
+#menu-dianas .sebusca {
+  right: 460px;            /* la de “Se busca” queda 180px a la izquierda de Tombstone */
 }

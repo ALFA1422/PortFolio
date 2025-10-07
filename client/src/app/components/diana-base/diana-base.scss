@@ -1,0 +1,71 @@
+.diana-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* 🎯 DIANA ENTERA */
+.diana-img {
+  height: var(--diana-h, 170px);
+  width: auto;
+  display: block;
+  transform-origin: top center;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.6));
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: auto;
+  cursor: url("/assets/img/cursores/mano.png") 45 15, auto !important;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.diana-img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* 🪵 EFECTO COLUMPIO BASE */
+@keyframes columpio {
+  0%, 100% { transform: rotateX(0deg) rotateZ(0deg); }
+  25%      { transform: rotateX(-10deg) rotateZ(-4deg); }
+  50%      { transform: rotateX(12deg) rotateZ(5deg); }
+  75%      { transform: rotateX(-8deg) rotateZ(-3deg); }
+}
+.animate-columpio {
+  animation: columpio 6s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+/* 💨 EFECTO BRISA — MITADES */
+@keyframes mover-izq {
+  0%, 100% { transform: translateX(-25px) rotate(-4deg); }
+  50%      { transform: translateX(-38px) rotate(4deg); }
+}
+@keyframes mover-der {
+  0%, 100% { transform: translateX(25px) rotate(3deg); }
+  50%      { transform: translateX(38px) rotate(-3deg); }
+}
+.animate-mitad-izq { animation: mover-izq 3.5s ease-in-out infinite; }
+.animate-mitad-der { animation: mover-der 3.5s ease-in-out infinite; }
+
+.diana-mitad {
+  position: absolute;
+  top: 0;
+  height: var(--diana-h, 167px);
+  cursor: pointer;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.6));
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Fundido */
+.fade-overlay {
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+}

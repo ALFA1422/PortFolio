@@ -1,64 +1,37 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { InicioComponent } from './components/inicio/inicio';
+import { RouterModule } from '@angular/router';
+import { MenuDianasComponent } from './components/menu-dianas/menu-dianas';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    InicioComponent,
-
-  ],
+  imports: [RouterModule, MenuDianasComponent],
   templateUrl: './app.html',
 })
 export class AppComponent implements AfterViewInit {
+  private sonidoDisparo!: HTMLAudioElement;
+
   ngAfterViewInit(): void {
-    const headerLinks = document.querySelectorAll('header a');
-    const menuToggle = document.getElementById('menu-toggle') as HTMLSelectElement | null;
+    // 🔫 Inicializar el sonido del cursor
+    this.sonidoDisparo = new Audio('assets/sounds/disparo.mp3');
+    this.sonidoDisparo.volume = 0.4;
 
-    if (!menuToggle || !headerLinks.length) return;
+    // 🎯 Cada clic en cualquier parte reproduce el disparo
+    document.addEventListener('click', () => {
+      this.reproducirDisparo();
+    });
+  }
 
-    // 🔹 Scroll suave para enlaces
-    headerLinks.forEach(link => {
-      link.addEventListener('click', event => {
-        event.preventDefault();
-        const targetId = (link as HTMLAnchorElement).getAttribute('href');
-        if (!targetId) return;
-        const targetElement = document.querySelector(targetId.startsWith('#') ? targetId : `#${targetId}`);
-        if (targetElement) {
-          const offset = (targetElement as HTMLElement).offsetTop - 60;
-          window.scrollTo({ top: offset, behavior: 'smooth' });
-        }
-        menuToggle.selectedIndex = 0;
+  reproducirDisparo() {
+    try {
+      // Reinicia para permitir clics seguidos
+      this.sonidoDisparo.currentTime = 0;
+      this.sonidoDisparo.play().catch(() => {
+        // Ignora si el navegador bloquea la primera reproducción
       });
-    });
-
-    // 🔹 Scroll suave para el select móvil
-    menuToggle.addEventListener('change', () => {
-      const targetId = '#' + menuToggle.value;
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        const offset = (targetElement as HTMLElement).offsetTop - 60;
-        window.scrollTo({ top: offset, behavior: 'smooth' });
-      }
-    });
-
-    // 🔹 Resalta la sección activa según scroll
-    window.addEventListener('scroll', () => {
-      const currentScrollPos = window.scrollY;
-      headerLinks.forEach(link => {
-        const targetId = (link as HTMLAnchorElement).getAttribute('href');
-        const targetElement = document.querySelector(targetId!);
-        if (!targetElement) return;
-        const top = (targetElement as HTMLElement).offsetTop - 80;
-        const bottom = top + (targetElement as HTMLElement).offsetHeight;
-
-        if (currentScrollPos >= top && currentScrollPos < bottom) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
-      });
-    });
+    } catch (e) {
+      console.warn('⚠️ Error al reproducir disparo:', e);
+    }
   }
 }
