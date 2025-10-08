@@ -1,4 +1,5 @@
 <div #wrapper class="diana-wrapper select-none" [class.rompiendose]="rompiendose">
+
   <!-- 🎯 DIANA ENTERA -->
   <img
     *ngIf="!rota"
@@ -12,31 +13,36 @@
 
   <!-- 💥 MITADES ROTAS -->
   <div *ngIf="rota" class="diana-rotura">
-    <!-- Izquierda -->
-    <img
-      [src]="imagenRotaIzq"
-      class="diana-mitad animate-mitad-izq"
-      alt="Mitad izquierda"
-      (click)="impactoMitad($event)"
-      [style.transform]="
-        'translateX(' + offsetIzq + 'px) ' +
-        'translateY(' + offsetYIzq + 'px) ' +
-        'rotate(' + rotacionIzq + 'deg) ' +
-        'scale(' + escalaIzq + ')'
-      "
-    />
-    <!-- Derecha -->
-    <img
-      [src]="imagenRotaDer"
-      class="diana-mitad animate-mitad-der"
-      alt="Mitad derecha"
-      (click)="impactoMitad($event)"
-      [style.transform]="
-        'translateX(' + offsetDer + 'px) ' +
-        'translateY(' + offsetYDer + 'px) ' +
-        'rotate(' + rotacionDer + 'deg) ' +
-        'scale(' + escalaDer + ')'
-      "
-    />
+
+    <!-- IZQUIERDA -->
+    <div class="mitad-hitbox" (click)="impactoMitad($event)">
+      <img
+        [src]="imagenRotaIzq"
+        class="diana-mitad animate-mitad-izq"
+        alt="Mitad izquierda"
+        [style.transform]="
+          'translateX(' + offsetIzq + 'px) ' +
+          'translateY(' + offsetYIzq + 'px) ' +
+          'rotate(' + rotacionIzq + 'deg) ' +
+          'scale(' + escalaIzq + ')'
+        "
+      />
+    </div>
+
+    <!-- DERECHA -->
+    <div class="mitad-hitbox" (click)="impactoMitad($event)">
+      <img
+        [src]="imagenRotaDer"
+        class="diana-mitad animate-mitad-der"
+        alt="Mitad derecha"
+        [style.transform]="
+          'translateX(' + offsetDer + 'px) ' +
+          'translateY(' + offsetYDer + 'px) ' +
+          'rotate(' + rotacionDer + 'deg) ' +
+          'scale(' + escalaDer + ')'
+        "
+      />
+    </div>
+
   </div>
 </div>

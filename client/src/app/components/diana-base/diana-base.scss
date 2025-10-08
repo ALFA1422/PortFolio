@@ -59,6 +59,25 @@
   user-select: none;
   -webkit-user-select: none;
 }
+/* 💥 HITBOX invisible para las mitades */
+.mitad-hitbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--hitbox-w, 200px);   /* ancho del área clicable */
+  height: var(--diana-h, 170px);   /* mismo alto que la diana */
+  cursor: url("/assets/img/cursores/mano.png") 45 15, auto !important;
+  pointer-events: auto;
+  z-index: 100;
+  background: transparent;
+}
+
+/* El <img> se mantiene debajo (se mueve, respira, etc) */
+.mitad-hitbox img {
+  position: relative;
+  z-index: 1;
+  pointer-events: none; /* los clics solo sobre el hitbox */
+}
 
 /* Fundido */
 .fade-overlay {
