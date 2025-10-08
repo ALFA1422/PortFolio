@@ -13,7 +13,7 @@ section[id] {
 
 /* 🌍 Cursor global — mano western personalizada */
 html, body {
-  cursor: url("/assets/img/cursores/mano.png") 45 15, default;
+  cursor: url("./assets/img/cursores/mano.png") 45 15, default;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -22,7 +22,7 @@ html, body {
 
 /* 🖱️ Cuando se mantiene clic (rotación de la mano) */
 body.clicked {
-  cursor: url("/assets/img/cursores/mano-rotada.png") 10 6, default;
+  cursor: url("./assets/img/cursores/mano-rotada.png") 10 6, default;
 }
 
 /* 🧾 Campos de texto */
