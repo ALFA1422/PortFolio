@@ -97,11 +97,11 @@
             "styles": ["src/styles.scss"]
           }
         },
-        "deploy": {
+       "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
             "baseHref": "https://alfa1422.github.io/PortFolio/",
-            "dir": "dist/portfolio-client"
+            "dir": "dist/portfolio-client/browser"
           }
         }
 
