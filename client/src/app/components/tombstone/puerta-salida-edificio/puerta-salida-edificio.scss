@@ -1,0 +1,48 @@
+.puerta-salida {
+  position: fixed;
+  bottom: 4%;
+  right: 4%;
+  width: 130px;
+  z-index: 250;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    filter: brightness(1.15);
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+.tunnel-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--fx, 50%) var(--fy, 50%),
+    transparent 25%,
+    rgba(0, 0, 0, 0.85) 65%,
+    rgba(0, 0, 0, 0.95) 80%
+  );
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out, background 0.8s ease-in-out;
+  z-index: 9999; /* 🔥 por encima de todo */
+}
+
+/* Etapa 1: túnel */
+.tunnel-overlay.activa {
+  opacity: 1;
+}
+
+/* Etapa 2: negro total */
+.tunnel-overlay.negro-total {
+  background: #000;
+  opacity: 1;
+}

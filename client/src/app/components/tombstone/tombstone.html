@@ -1,26 +1,59 @@
 <section id="tombstone">
   <div class="pueblo-wrapper">
-    <img src="assets/img/pueblo/fondo-pueblo.png" class="fondo" alt="Fondo del pueblo" />
+    <!-- 🎬 Escena interior (solo esta capa se escalará) -->
+    <div class="escena">
+      <img src="assets/img/pueblo/fondo-pueblo.png" class="fondo" alt="Fondo del pueblo" />
 
-    <!-- 🏨 Hotel -->
-    <img src="assets/img/pueblo/hotel.png" class="building hotel" alt="Hotel" />
+      <!-- 🏨 Hotel -->
+      <img
+        src="assets/img/pueblo/hotel.png"
+        class="building hotel cursor-pointer"
+        alt="Hotel"
+        title="Entrar al hotel"
+        (click)="zoomYEntrar($event, 'hotel')"
+      />
 
-    <!-- 🎰 Casino -->
-    <img src="assets/img/pueblo/casino.png" class="building casino" alt="Casino" />
+      <!-- 🎰 Casino -->
+      <img
+        src="assets/img/pueblo/casino.png"
+        class="building casino cursor-pointer"
+        alt="Casino"
+        title="Entrar al casino"
+        (click)="zoomYEntrar($event, 'casino')"
+      />
 
-    <!-- 🏦 Banco -->
-    <img src="assets/img/pueblo/banco.png" class="building banco" alt="Banco" />
+      <!-- 🏦 Banco -->
+      <img
+        src="assets/img/pueblo/banco.png"
+        class="building banco cursor-pointer"
+        alt="Banco"
+        title="Entrar al banco"
+        (click)="zoomYEntrar($event, 'banco')"
+      />
 
-    <!-- 🍺 Taberna -->
-    <img src="assets/img/pueblo/taberna.png" class="building taberna" alt="Taberna" />
+      <!-- 🍺 Taberna -->
+      <img
+        src="assets/img/pueblo/taberna.png"
+        class="building taberna cursor-pointer"
+        alt="Taberna"
+        title="Entrar a la taberna"
+        (click)="zoomYEntrar($event, 'taberna')"
+      />
 
-    <!-- ANIMALES -->
-    <img src="assets/img/animales/caballo-blanco-espalda.png" class="caballo-blanco" alt="Caballo blanco" />
-    <img src="assets/img/animales/caballo-marron-espalda.png" class="caballo-marron" alt="Caballo marrón" />
-    <img src="assets/img/animales/perro.png" class="perro" alt="Perro" />
+      <!-- 🐴 ANIMALES -->
+      <img src="assets/img/animales/caballo-blanco-espalda.png" class="caballo-blanco" alt="Caballo blanco" />
+      <img src="assets/img/animales/caballo-marron-espalda.png" class="caballo-marron" alt="Caballo marrón" />
+      <img src="assets/img/animales/perro.png" class="perro" alt="Perro" />
 
-    <!-- PERSONAJES -->
-    <img src="assets/img/personajes/borracho1.png" class="borracho1" alt="Borracho" />
-    <img src="assets/img/personajes/miron1.png" class="miron1" alt="Mirón" />
+      <!-- 👥 PERSONAJES -->
+      <img src="assets/img/personajes/borracho1.png" class="borracho1" alt="Borracho" />
+      <img src="assets/img/personajes/miron1.png" class="miron1" alt="Mirón" />
+    </div>
   </div>
+
+  <!-- Subrutas (como la Taberna) -->
+  <router-outlet></router-outlet>
+
+  <!-- Fundido -->
+  <div class="fade-overlay"></div>
 </section>

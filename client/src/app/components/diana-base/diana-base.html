@@ -1,19 +1,19 @@
 <div #wrapper class="diana-wrapper select-none" [class.rompiendose]="rompiendose">
 
   <!-- 🎯 DIANA ENTERA -->
-  <img
-    *ngIf="!rota"
-    #entera
-    [src]="imagenEntera"
-    class="diana-img animate-columpio"
-    alt="Diana entera"
-    [style.transform]="'scale(' + escala + ')'"
-    (click)="romperDiana()"
-  />
+  <div class="diana-hitbox" (click)="romperDiana()">
+    <img
+      *ngIf="!rota"
+      #entera
+      [src]="imagenEntera"
+      class="diana-img animate-columpio"
+      alt="Diana entera"
+      [style.transform]="'scale(' + escala + ')'"
+    />
+  </div>
 
   <!-- 💥 MITADES ROTAS -->
   <div *ngIf="rota" class="diana-rotura">
-
     <!-- IZQUIERDA -->
     <div class="mitad-hitbox" (click)="impactoMitad($event)">
       <img
@@ -43,6 +43,5 @@
         "
       />
     </div>
-
   </div>
 </div>

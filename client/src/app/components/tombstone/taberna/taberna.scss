@@ -1,0 +1,253 @@
+#taberna {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  opacity: 1;
+  z-index: 5;
+  transition: transform 1s ease, opacity 0.8s ease;
+}
+
+/* 🎬 Escena base */
+.escena-taberna {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1792px;
+  height: 1024px;
+  transform: translate(-50%, -50%) scale(var(--escala-escena, 1));
+  transform-origin: center center;
+}
+
+/* 🧭 Escalado automático */
+@media screen and (min-aspect-ratio: 16/9) {
+  :root {
+    --escala-escena: calc(100vh / 1024);
+  }
+}
+@media screen and (max-aspect-ratio: 16/9) {
+  :root {
+    --escala-escena: calc(100vw / 1792);
+  }
+}
+
+/* ✨ Imágenes generales */
+.escena-taberna img {
+  position: absolute;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* 📍 Coordenadas fijas (1792×1024 base) */
+.miron1 { left: 360px; bottom: 240px; width: 270px; z-index: 10; }
+.fondobar4 { left: 420px; bottom: 296px; width: 742px; z-index: 1; }
+.barrabar { left: 370px; bottom: 100px; width: 840px; z-index: 5; }
+.taburetes { left: 530px; bottom: 160px; width: 480px; z-index: 6; }
+.mesa { left: 100px; bottom: -30px; width: 490px; z-index: 7; }
+.borracho-taberna { left: 30px; bottom: 50px; width: 350px; z-index: 7; }
+
+/* =====================================================
+   🪑 Efecto de invitación — Taburetes que respiran luz
+===================================================== */
+@keyframes respirarTaburetes {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(2); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+.escena-taberna.destacar-taburetes .taburetes {
+  animation: respirarTaburetes 3s ease-in-out infinite;
+  transform-origin: center center;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.taburetes:hover {
+  animation: none !important;
+  transform: scale(1.1);
+  filter: brightness(2);
+  z-index: 10;
+}
+
+/* 🧍 Tabernero */
+.tabernero-container {
+  position: absolute;
+  left: 730px;
+  bottom: 630px;
+  width: 140px;
+  cursor: pointer;
+  z-index: 3;
+}
+.tabernero-container img {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+.tabernero-container .mirando { opacity: 1; z-index: 3; }
+.tabernero-container.mirando-activo .mirando { opacity: 0; }
+.tabernero-container.mirando-activo .frente { opacity: 1; z-index: 3; }
+
+/* 🎥 Zoom hacia el tabernero */
+.escena-taberna.zoom-tabern {
+  transition: transform var(--zoom-speed, 3s) ease-in-out;
+  transform:
+    translate(var(--zoom-tx, -50%), var(--zoom-ty, -50%))
+    scale(var(--zoom-scale, 5))
+    translate(var(--zoom-offset-x, 0px), var(--zoom-offset-y, 0px));
+}
+
+/* ===================================================================
+   💬 DIÁLOGOS
+=================================================================== */
+.dialogo-oeste {
+  position: absolute;
+  background: rgba(35, 15, 5, 0.92);
+  border: 4px solid #b98c54;
+  border-radius: 0.5rem;
+  font-family: 'Western', Sheriff;
+  color: #f5deb3;
+  text-shadow: 2px 2px 6px #000;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  animation: aparecerDialogo 1s ease forwards, leveFlotacion 5s ease-in-out infinite alternate;
+  z-index: 25;
+  text-align: center;
+  line-height: 1.35;
+}
+@keyframes aparecerDialogo { to { opacity: 1; } }
+@keyframes leveFlotacion { from { transform: translate(-50%, 0); } to { transform: translate(-50%, -6px); } }
+
+.dialogo-inicial {
+  bottom: 500px;
+  left: 62%;
+  transform: translateX(-50%);
+  padding: 0.8rem 1.6rem;
+  font-size: 1.6rem;
+  max-width: 420px;
+}
+.dialogo-conversacion {
+  bottom: 310px;
+  left: 73%;
+  transform: translateX(-50%);
+  padding: 1.2rem 2rem;
+  font-size: 1.4rem;
+  max-width: 540px;
+}
+
+/* 🎯 Botones de respuesta */
+.dialogo-oeste .respuestas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.dialogo-oeste .respuestas button {
+  background: #b98c54;
+  color: #1b0e06;
+  font-family: 'Western', Sheriff;
+  border: 2px solid #6a4822;
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  font-size: 1.2rem;
+  &:hover { background: #d1a36c; transform: scale(1.05); }
+}
+
+/* ↩️ Botón DENTRO DEL DIÁLOGO (final de conversación) */
+.volver-dialogo {
+  margin-top: .8rem;
+  display: flex;
+  justify-content: center;
+}
+.volver-dialogo button {
+  background: transparent;
+  color: #d1b186;
+  border: 2px solid #d1b186;
+  padding: 0.3rem 1.2rem;
+  font-family: 'Western', Sheriff;
+  font-size: 1.1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background .25s, transform .25s;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  &:hover { background: rgba(209,177,134,.15); transform: scale(1.05); }
+}
+
+/* ↩️ Botón FIJO (visible mientras enBarra = true) */
+.volver-fijo {
+  position: fixed;
+  top: 1.4rem;
+  left: 2rem;
+  z-index: 140;
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: aparecerVolver .45s ease forwards;
+}
+@keyframes aparecerVolver { to { opacity: 1; transform: translateY(0); } }
+.volver-fijo button {
+  background: transparent;
+  color: #d1b186;
+  border: 2px solid #d1b186;
+  padding: 0.3rem 1.2rem;
+  font-family: 'Western', Sheriff;
+  font-size: 1.1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background .25s, transform .25s;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  &:hover { background: rgba(209,177,134,.15); transform: scale(1.05); }
+}
+
+/* 🎥 Efecto de alejamiento cinematográfico */
+@keyframes zoomOutBarra {
+  0% {
+    transform: translate(var(--zoom-tx, -50%), var(--zoom-ty, -50%))
+      scale(var(--zoom-scale, 3.6))
+      translate(var(--zoom-offset-x, 50px), var(--zoom-offset-y, 0));
+    filter: brightness(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: brightness(0.7);
+    opacity: 0.95;
+  }
+}
+.escena-taberna.zoom-out {
+  animation: zoomOutBarra 1.8s ease-in-out forwards;
+}
+
+/* 🌑 Fundido progresivo mejorado (efecto túnel + fade total) */
+.tunnel-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--fx, 50%) var(--fy, 50%),
+    transparent 25%,
+    rgba(0, 0, 0, 0.85) 65%,
+    rgba(0, 0, 0, 0.95) 80%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 1.2s ease-in-out, transform 1.6s ease-in-out;
+  z-index: 300; /* encima de todo */
+}
+
+/* 🌘 Fase intermedia: túnel visible */
+.tunnel-overlay.activa {
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+/* 🌑 Fase final: pantalla completamente negra */
+.tunnel-overlay.fundido-total {
+  opacity: 1;
+  transform: scale(2);
+  background: rgba(0, 0, 0, 1);
+  transition: background 0.8s ease-in-out;
+}

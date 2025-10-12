@@ -1,2 +1,4 @@
-<app-menu-dianas></app-menu-dianas>
+<!-- Solo visibles en /se-busca y /tombstone -->
+<app-menu-dianas *ngIf="mostrarDianas"></app-menu-dianas>
+
 <router-outlet></router-outlet>

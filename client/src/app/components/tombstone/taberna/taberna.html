@@ -1,0 +1,63 @@
+<section
+  id="taberna"
+  class="escena-container"
+  style="background-image: url('../../../../assets/img/pueblo/escenas/escena-cruda1.png')"
+>
+  <!-- 🎬 Escena principal -->
+  <div class="escena-taberna">
+    <img src="assets/img/pueblo/escenas/fondobar4.png" class="fondobar4" alt="fondobar" />
+
+    <!-- 🧍‍♂️ Tabernero -->
+    <div class="tabernero-container">
+      <img src="assets/img/personajes/tabernero.png" class="tabernero frente" alt="tabernero" />
+      <img src="assets/img/personajes/tabernero-mirando.png" class="tabernero mirando" alt="tabernero-mirando" />
+    </div>
+
+    <!-- 🍷 Elementos de la barra -->
+    <img src="assets/img/pueblo/escenas/barrabar.png" class="barrabar" alt="barrabar" />
+
+    <!-- 🪑 Taburetes interactivos -->
+    <img
+      src="assets/img/pueblo/escenas/taburetes.png"
+      class="taburetes cursor-pointer hover:scale-105 transition-transform"
+      alt="taburetes"
+      title="Sentarse"
+      (click)="acercarseAlTabernero()"
+    />
+
+    <!-- 👥 Otros personajes y objetos -->
+    <img src="assets/img/personajes/miron1.png" class="miron1" alt="Mirón" />
+    <img src="assets/img/pueblo/escenas/mesa.png" class="mesa" alt="mesa" />
+    <img src="assets/img/pueblo/escenas/borracho-taberna.png" class="borracho-taberna" alt="borracho-taberna" />
+  </div>
+
+  <!-- 💬 Fase 1: saludo inicial -->
+  <div *ngIf="mostrarDialogo && dialogoInicial" class="dialogo-oeste dialogo-inicial">
+    Sheriff, te estábamos esperando... ven, siéntate a tomar algo.
+  </div>
+
+  <!-- 💬 Fase 2: conversación con el tabernero -->
+  <div *ngIf="mostrarDialogo && !dialogoInicial && dialogoActual" class="dialogo-oeste dialogo-conversacion">
+    <p>{{ dialogoActual.texto }}</p>
+
+    <!-- Opciones de respuesta -->
+    <div class="respuestas" *ngIf="dialogoActual.respuestas?.length">
+      <button *ngFor="let r of dialogoActual.respuestas" (click)="seleccionarRespuesta(r.next)">
+        {{ r.texto }}
+      </button>
+    </div>
+
+    <!-- ↩️ Botón DENTRO del diálogo (solo cuando termina la conversación) -->
+    <div *ngIf="conversacionTerminada" class="volver-dialogo">
+      <button (click)="volverVistaGeneral()">↩ Atrás</button>
+    </div>
+  </div>
+
+  <!-- ↩️ Botón FIJO arriba-izquierda (aparece al estar en la barra / zoom hecho) -->
+  <div *ngIf="enBarra" class="volver-fijo">
+    <button (click)="volverVistaGeneral()">↩ Atrás</button>
+  </div>
+
+  <!-- 🚪 Puerta de salida del edificio -->
+  <app-puerta-salida-edificio destino="/tombstone"></app-puerta-salida-edificio>
+</section>
